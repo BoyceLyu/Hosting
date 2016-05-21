@@ -22,11 +22,14 @@ k-clean each='var projectFile in Files.Include("*/project.json")'
         Directory.Delete(targetDir,true);
      }
 
+Console.WriteLine("aaaaaa"+pack_options);
+
       var sourceDir = baseDir;// Path.Combine(baseDir, "src");
       
       foreach(var projectDir in Directory.GetDirectories(sourceDir).Where(x=>x.Contains("Microsoft"))) 
       {         
           var dotnetArgs = string.Format("pack{0} {1} --configuration {2}", pack_options, projectDir, configuration ?? "Debug");
+          Console.WriteLine(pack_options);
           Dotnet(dotnetArgs);
           
           var projectName=Path.GetFileName(projectDir);
