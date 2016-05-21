@@ -18,7 +18,10 @@ k-clean each='var projectFile in Files.Include("*/project.json")'
 
 #build-core target='build-test'
   @{
-     Directory.Delete(buildDir,true);
+     if(Directory.Exists(targetDir)){
+        Directory.Delete(targetDir,true);
+     }
+
       var sourceDir = baseDir;// Path.Combine(baseDir, "src");
       
       foreach(var projectDir in Directory.GetDirectories(sourceDir).Where(x=>x.Contains("Microsoft"))) 
